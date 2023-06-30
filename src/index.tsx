@@ -30,6 +30,7 @@ export interface TelegramButtonPropArg {
     dataAuthUrl?: string
     buttonSize?: 'large' | 'medium' | 'small'
     children?: React.ReactNode
+    onClick?: () => void
 }
 
 export const TelegramButton: React.FC<TelegramButtonPropArg> = ({
@@ -43,6 +44,7 @@ export const TelegramButton: React.FC<TelegramButtonPropArg> = ({
     requestAccess = true,
     lang = 'en',
     usePic = false,
+    onClick,
     children
 }) => {
     const telegramRef = React.useRef<Types.Nullable<HTMLButtonElement>>(null)
@@ -91,7 +93,7 @@ export const TelegramButton: React.FC<TelegramButtonPropArg> = ({
 
     return (
         <>
-            <button ref={telegramRef} className={classNames('position-relative overflow-hidden', className)}>
+            <button ref={telegramRef} className={classNames('position-relative overflow-hidden', className)} onClick={onClick}>
                 {children}
             </button>
         </>
